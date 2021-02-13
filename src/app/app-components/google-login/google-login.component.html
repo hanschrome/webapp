@@ -25,45 +25,82 @@
 
     </div>
     <div class="card-content">
+      <mat-tab-group>
+        <mat-tab label="Candidatos">
+          <form class="candidate-access-form">
+            <div>
+              <h5>Accede con tu cuenta Google...</h5>
+              <app-loading *ngIf="loading"></app-loading>
+              <div [hidden]="loading">
+                <span style="display: inline-block;vertical-align: middle; margin: 10px;" class="login-button g-signin2" data-onsuccess="onSignIn"></span>
+              </div>
+            </div>
+            <mat-divider></mat-divider>
+            <h5>O accede con tu correo electrónico.</h5>
+            <div>
+              <form class="native-form">
+                <div>
+                  <mat-form-field appearance="fill">
+                    <mat-label>Introduce tu correo electrónico</mat-label>
+                    <label>
+                      <input matInput placeholder="nombre@solidjobs.org" [formControl]="email" required>
+                    </label>
+                  </mat-form-field>
+                </div>
+                <div>
+                  <mat-form-field appearance="fill">
+                    <mat-label>Introduce tu contraseña</mat-label>
+                    <label>
+                      <input matInput placeholder="Contraseña" [formControl]="password" type="password" required>
+                    </label>
+                  </mat-form-field>
+                  <mat-error *ngIf="password.invalid || password.invalid">{{ getErrorMessage() }}</mat-error>
+                </div>
+              </form>
+            </div>
 
-        <form>
-          <div>
-            <label>
-              <input [ngModel]="privacyAccepted" (ngModelChange)="privacyAccepted = $event" #privacy type="checkbox" name="privacy" id="privacy"/>
-              <span>He leído y acepto la <a href="https://solidjobs.org/politica-de-privacidad" target="_blank">Política de Privacidad</a>.</span>
-            </label>
-          </div>
+            <div>
+              <label>
+                <input [ngModel]="privacyAccepted" (ngModelChange)="privacyAccepted = $event" #privacy type="checkbox" name="privacy" id="privacy"/>
+                <span>He leído y acepto la <a href="https://solidjobs.org/politica-de-privacidad" target="_blank">Política de Privacidad</a>.</span>
+              </label>
+            </div>
 
-          <div>
-            <label>
-              <input [ngModel]="commercialAccepted" (ngModelChange)="commercialAccepted = $event" type="checkbox" name="commercial" id="commercial" />
-              <span>He leído y acepto la <a href="https://solidjobs.org/politica-de-cookies/" target="_blank">Política de Cookies</a>.</span>
-            </label>
-          </div>
+            <div>
+              <label>
+                <input [ngModel]="commercialAccepted" (ngModelChange)="commercialAccepted = $event" type="checkbox" name="commercial" id="commercial" />
+                <span>He leído y acepto la <a href="https://solidjobs.org/politica-de-cookies/" target="_blank">Política de Cookies</a>.</span>
+              </label>
+            </div>
 
-          <span *ngIf="!(privacyAccepted && commercialAccepted)" style="color: orangered; font-size: 10px;">Para acceder necesitas aceptar las condiciones.</span>
-          <div *ngIf="!access || !(privacyAccepted && commercialAccepted)">
-            <button [disabled]="!(privacyAccepted && commercialAccepted)" (click)="access = true" class="btn">Acceder a SolidJobs</button>
-          </div>
+            <span *ngIf="!(privacyAccepted && commercialAccepted)" style="color: orangered; font-size: 10px;">Para acceder necesitas aceptar las condiciones.</span>
 
-          <div  [hidden]="!access || !(privacyAccepted && commercialAccepted)">
-            <app-loading *ngIf="loading"></app-loading>
-            <span *ngIf="!loading && privacyAccepted && commercialAccepted && access"><strong>Ya puedes acceder, inicia sesión con tu cuenta de Google haciendo click en el siguiente botón:</strong></span>
+            <div>
+              <button mat-flat-button color="primary" [disabled]="!(privacyAccepted && commercialAccepted) || password.invalid || password.invalid">Iniciar sesión</button>
+            </div>
 
-            <span [hidden]="loading" style="display: inline-block;vertical-align: middle; margin: 10px;" class="login-button g-signin2 z-depth-3" data-onsuccess="onSignIn"></span>
-          </div>
+            <div style="font-size: 12px;">
+              <p style="margin: 10px;">
+                Protección de datos
+              </p>
+              <p style="margin: 10px;">
+                El responsable del tratamiento es SOLIDJOBS. La finalidad de la recogida de datos es la de poder
+                atender sus cuestiones, sin ceder sus datos a terceros. Tiene derecho a saber qué información tenemos
+                sobre usted, corregirla o eliminarla tal y como se explica en nuestra Política de Privacidad.
+              </p>
+            </div>
+          </form>
+        </mat-tab>
+        <mat-tab label="Organizaciones">
 
-          <div style="font-size: 12px;">
-            <p style="margin: 10px;">
-              Protección de datos
-            </p>
-            <p style="margin: 10px;">
-              El responsable del tratamiento es SOLIDJOBS. La finalidad de la recogida de datos es la de poder
-              atender sus cuestiones, sin ceder sus datos a terceros. Tiene derecho a saber qué información tenemos
-              sobre usted, corregirla o eliminarla tal y como se explica en nuestra Política de Privacidad.
-            </p>
-          </div>
-        </form>
+        </mat-tab>
+        <!--
+        <mat-tab label="Profesorado">
+
+        </mat-tab>
+        -->
+      </mat-tab-group>
+
 
       </div>
     </div>

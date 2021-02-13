@@ -19,6 +19,9 @@
             "assets": [
               "src/assets",
               "src/favicon.ico"
+            ],
+            "styles": [
+              "src/custom-theme.scss"
             ]
           },
           "configurations": {

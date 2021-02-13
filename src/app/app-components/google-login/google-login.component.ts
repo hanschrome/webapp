@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl, Validators} from '@angular/forms';
 
 declare function loadGoogleOauth(): any;
 
@@ -16,6 +17,9 @@ export class GoogleLoginComponent implements OnInit {
   public commercialAccepted = false;
   public access = false;
 
+  email = new FormControl('', [Validators.required, Validators.email]);
+  password = new FormControl('', [Validators.required]);
+
   constructor() { }
 
   ngOnInit() {
@@ -27,6 +31,18 @@ export class GoogleLoginComponent implements OnInit {
         this.loadGoogleOauth();
       }, 2000
     );
+  }
+
+  getErrorMessage() {
+    if (this.email.hasError('required')) {
+      return 'Has de introducir un email';
+    }
+
+    if(this.password.hasError('required')) {
+      return 'Has de introducir una contraseña.';
+    }
+
+    return this.email.hasError('email') ? 'Has de introducir un correo electrónico válido.' : '';
   }
 
   get loading(): boolean {

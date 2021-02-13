@@ -22,6 +22,8 @@ import {PanelApiCvService} from './services/panel-api-services/panel-api-cv.serv
 import {PanelApiCvExportPdfService} from './services/panel-api-services/panel-api-cv-export-pdf.service';
 import {LoadingComponent} from './app-components/commons/loading/loading.component';
 import {PanelApiTokenService} from './services/panel-api-services/panel-api-token.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule, MatFormFieldModule, MatInputModule, MatListModule, MatTabsModule} from '@angular/material';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -54,7 +56,14 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-      }),
+    }),
+    BrowserAnimationsModule,
+    MatTabsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatButtonModule,
+    MatListModule,
   ],
   providers: [
     AuthGuardService,
