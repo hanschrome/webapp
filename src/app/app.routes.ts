@@ -2,7 +2,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {HomepageComponent} from './app-components/homepage/homepage.component';
 import {AuthGuardService} from './services/guards/auth-guard.service';
-import {GoogleLoginComponent} from './app-components/google-login/google-login.component';
+import {GoogleLoginComponent} from './app-components/platform-access/google-login/google-login.component';
 import {CvAppComponent} from './app-components/cv-app/cv-app.component';
 import {CvAppPersonalDataComponent} from './app-components/cv-app/cv-app-personal-data/cv-app-personal-data.component';
 import {CvAppContentComponent} from './app-components/cv-app/cv-app-content/cv-app-content.component';
