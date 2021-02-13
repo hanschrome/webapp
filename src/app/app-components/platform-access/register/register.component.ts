@@ -4,11 +4,11 @@ import {FormControl, Validators} from '@angular/forms';
 declare function loadGoogleOauth(): any;
 
 @Component({
-  selector: 'app-google-login',
-  templateUrl: './google-login.component.html',
-  styleUrls: ['./google-login.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class GoogleLoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
   private _loading = true;
   private _loadGoogleOauth = null;
@@ -33,13 +33,10 @@ export class GoogleLoginComponent implements OnInit {
     );
   }
 
+
   getErrorMessage() {
     if (this.email.hasError('required')) {
       return 'Has de introducir un correo electrónico';
-    }
-
-    if(this.password.hasError('required')) {
-      return 'Has de introducir una contraseña.';
     }
 
     return this.email.hasError('email') ? 'Has de introducir un correo electrónico válido.' : '';

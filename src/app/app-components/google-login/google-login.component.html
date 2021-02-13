@@ -20,7 +20,7 @@
       </div>
 
       <div class="card-subtitle">
-        Estás a un paso de acceder a SolidJobs, la herramienta que te ayuda a conseguir empleo.
+        <a href="/register" routerLink="/register">¿No tienes cuenta? Regístrate aquí o accede con tu cuenta de Google.</a>
       </div>
 
     </div>
@@ -54,7 +54,7 @@
                       <input matInput placeholder="Contraseña" [formControl]="password" type="password" required>
                     </label>
                   </mat-form-field>
-                  <mat-error *ngIf="password.invalid || password.invalid">{{ getErrorMessage() }}</mat-error>
+                  <mat-error *ngIf="password.invalid || email.invalid">{{ getErrorMessage() }}</mat-error>
                 </div>
               </form>
             </div>
@@ -76,7 +76,7 @@
             <span *ngIf="!(privacyAccepted && commercialAccepted)" style="color: orangered; font-size: 10px;">Para acceder necesitas aceptar las condiciones.</span>
 
             <div>
-              <button mat-flat-button color="primary" [disabled]="!(privacyAccepted && commercialAccepted) || password.invalid || password.invalid">Iniciar sesión</button>
+              <button mat-flat-button color="primary" [disabled]="!(privacyAccepted && commercialAccepted) || email.invalid || password.invalid">Iniciar sesión</button>
             </div>
 
             <div style="font-size: 12px;">

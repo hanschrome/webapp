@@ -24,6 +24,7 @@ import {LoadingComponent} from './app-components/commons/loading/loading.compone
 import {PanelApiTokenService} from './services/panel-api-services/panel-api-token.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule, MatFormFieldModule, MatInputModule, MatListModule, MatTabsModule} from '@angular/material';
+import { RegisterComponent } from './app-components/platform-access/register/register.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -41,7 +42,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     CvAppExportComponent,
     CvAppPersonalDataComponent,
     CvAppHeaderComponent,
-    LoadingComponent
+    LoadingComponent,
+    RegisterComponent
 
   ],
   imports: [

@@ -7,10 +7,12 @@ import {CvAppComponent} from './app-components/cv-app/cv-app.component';
 import {CvAppPersonalDataComponent} from './app-components/cv-app/cv-app-personal-data/cv-app-personal-data.component';
 import {CvAppContentComponent} from './app-components/cv-app/cv-app-content/cv-app-content.component';
 import {CvAppExportComponent} from './app-components/cv-app/cv-app-export/cv-app-export.component';
+import {RegisterComponent} from './app-components/platform-access/register/register.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomepageComponent},
   {path: 'login', component: GoogleLoginComponent},
+  {path: 'register', component: RegisterComponent},
   {
     path: 'cv', component: CvAppComponent, canActivate: [AuthGuardService],
     children: [
