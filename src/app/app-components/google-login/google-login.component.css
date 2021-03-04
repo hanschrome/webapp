@@ -12,3 +12,20 @@ header img {
   position: relative;
   margin: 25px auto 45px;
 }
+
+.ote-box {
+  border: 1px solid #3d3d3d;
+  border-radius: 5px;
+  float: left;
+  width: CALC( 50% - 50px);
+  margin: 15px;
+  min-width: 250px;
+}
+
+.ote-box .ote-icon {
+  max-width: 50px;
+  position: relative;
+  top: -20px;
+  left: -20px;
+  background-color: white;
+}
