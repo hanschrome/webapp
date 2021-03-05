@@ -80,7 +80,8 @@
               <div class="input-field">
                 <input [(ngModel)]="oteInputModel" [placeholder]="oteInputPlaceholder" />
               </div>
-              <button (click)="onSendOteFormClick()" class="btn">Enviar a Ote</button>
+              <app-loading *ngIf="loading"></app-loading>
+              <button *ngIf="!loading" (click)="onSendOteFormClick()" class="btn">Enviar a Ote</button>
             </div>
           </div>
 
