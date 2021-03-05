@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PanelApiTokenService} from '../../services/panel-api-services/panel-api-token.service';
 
 declare function loadGoogleOauth(): any;
 
@@ -11,12 +12,13 @@ export class GoogleLoginComponent implements OnInit {
 
   private _loading = true;
   private _loadGoogleOauth = null;
+  private _oteInputModel = null;
+  private _oteInputPlaceholder = 'tu@correo.com';
+  private _oteStatus = 1;
 
   public privacyAccepted = false;
-  public commercialAccepted = false;
-  public access = false;
 
-  constructor() { }
+  constructor(private panelApiTokenService: PanelApiTokenService) { }
 
   ngOnInit() {
     this.loadGoogleOauth = loadGoogleOauth;
@@ -26,6 +28,51 @@ export class GoogleLoginComponent implements OnInit {
         this.loading = false;
         this.loadGoogleOauth();
       }, 2000
+    );
+  }
+
+  onSendOteFormClick() {
+    if (this.oteStatus === 1) {
+      this.sendMail();
+    }
+
+    if(this.oteStatus === 2) {
+      this.sendCode();
+    }
+  }
+
+  sendMail() {
+    this.loading = true;
+    this.panelApiTokenService.sendEmailOte(this.oteInputModel).subscribe(
+      (ok) => {
+        console.log(ok);
+        this.oteInputPlaceholder = '000000';
+        this.oteStatus = 2;
+        this.loading = false;
+      },
+      (ko) => {
+        console.log(ko);
+        this.oteStatus = 1;
+        this.loading = false;
+        alert('Ha ocurrido un error enviándole el email de Ote.');
+        // @todo reset and release button
+      }
+    );
+  }
+
+  sendCode() {
+    this.loading = true;
+    this.panelApiTokenService.sendCodeOte(this.oteInputModel).subscribe(
+      (ok) => {
+        // @todo load token
+        console.log(ok);
+      },
+      (ko) => {
+        console.log(ko);
+        this.oteStatus = 2;
+        this.loading = false;
+        alert('¡Ops! Ote ha sufrido un cortocircuito. Inténtalo de nuevo.');
+      }
     );
   }
 
@@ -43,5 +90,29 @@ export class GoogleLoginComponent implements OnInit {
 
   set loadGoogleOauth(value: any) {
     this._loadGoogleOauth = value;
+  }
+
+  get oteInputModel(): any {
+    return this._oteInputModel;
+  }
+
+  set oteInputModel(value: any) {
+    this._oteInputModel = value;
+  }
+
+  get oteInputPlaceholder(): string {
+    return this._oteInputPlaceholder;
+  }
+
+  set oteInputPlaceholder(value: string) {
+    this._oteInputPlaceholder = value;
+  }
+
+  get oteStatus(): number {
+    return this._oteStatus;
+  }
+
+  set oteStatus(value: number) {
+    this._oteStatus = value;
   }
 }

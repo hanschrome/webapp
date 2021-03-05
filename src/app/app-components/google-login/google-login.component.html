@@ -14,6 +14,7 @@
   <div class="col s1 m1 l1"></div>
   <div class="col s10 m10 l10">
 
+    <!-- Política de privacidad -->
     <div class="card" style="padding: 10px;" *ngIf="!privacyAccepted">
       <div class="card-header">
         <div class="card-title">
@@ -53,6 +54,7 @@
       </div>
     </div>
 
+    <!-- Access SolidJobs -->
     <div class="card" style="padding: 10px;" *ngIf="privacyAccepted">
       <div class="card-header">
         <div class="card-title">
@@ -71,13 +73,14 @@
           <div class="ote-box">
             <div>
               <img class="ote-icon" src="/assets/img/cv-app/transparent-icon.png" alt="Ote" />
-              Puedo darte acceso con tu correo electrónico...
+              <span *ngIf="oteStatus === 1">Puedo darte acceso con tu correo electrónico...</span>
+              <span *ngIf="oteStatus === 2">Te he enviado un email, ¿Qué código de 6 dígitos te he enviado?</span>
             </div>
             <div style="padding: 10px;">
               <div class="input-field">
-                <input placeholder="tu@correo.com" />
+                <input [(ngModel)]="oteInputModel" [placeholder]="oteInputPlaceholder" />
               </div>
-              <button class="btn">Enviar a Ote</button>
+              <button (click)="onSendOteFormClick()" class="btn">Enviar a Ote</button>
             </div>
           </div>
 
@@ -98,8 +101,6 @@
 
           <div style="clear: both;"></div>
         </div>
-
-
 
             <div style="font-size: 12px;">
               <p style="margin: 10px;">

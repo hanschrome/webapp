@@ -20,6 +20,38 @@ export class PanelApiTokenService {
       .map(TokenMapper.map);
   }
 
+  /**
+   *
+   * @param email
+   */
+  public sendEmailOte(email: string): Observable<any>
+  {
+    return this.http.post(
+      ConfigurationService.getPanelApiUrl() +
+      this.path +
+      '/ote-email'
+      ,
+      {
+        'email': email
+      });
+  }
+
+  /**
+   *
+   * @param code
+   */
+  public sendCodeOte(code: string): Observable<any>
+  {
+    return this.http.post(
+      ConfigurationService.getPanelApiUrl() +
+      this.path +
+      '/ote-code',
+      {
+        code: code
+      }
+    );
+  }
+
   public createTokenByEmailAndPassword(email: string, password: string): Observable<Token> {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
