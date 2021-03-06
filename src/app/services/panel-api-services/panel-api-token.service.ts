@@ -38,16 +38,18 @@ export class PanelApiTokenService {
 
   /**
    *
+   * @param mail
    * @param code
    */
-  public sendCodeOte(code: string): Observable<any>
+  public sendCodeOte(mail: string, code: string): Observable<any>
   {
     return this.http.post(
       ConfigurationService.getPanelApiUrl() +
       this.path +
       '/ote-code',
       {
-        code: code
+        email: mail,
+        shortCode: code
       }
     );
   }

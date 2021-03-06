@@ -16,6 +16,8 @@ export class GoogleLoginComponent implements OnInit {
   private _oteInputPlaceholder = 'tu@correo.com';
   private _oteStatus = 1;
 
+  private _mail: string;
+
   public privacyAccepted = false;
 
   constructor(private panelApiTokenService: PanelApiTokenService) { }
@@ -46,6 +48,8 @@ export class GoogleLoginComponent implements OnInit {
     this.panelApiTokenService.sendEmailOte(this.oteInputModel).subscribe(
       (ok) => {
         console.log(ok);
+        this.mail = this.oteInputModel;
+        this.oteInputModel = '';
         this.oteInputPlaceholder = '000000';
         this.oteStatus = 2;
         this.loading = false;
@@ -62,7 +66,7 @@ export class GoogleLoginComponent implements OnInit {
 
   sendCode() {
     this.loading = true;
-    this.panelApiTokenService.sendCodeOte(this.oteInputModel).subscribe(
+    this.panelApiTokenService.sendCodeOte(this.mail, this.oteInputModel).subscribe(
       (ok) => {
         // @todo load token
         console.log(ok);
@@ -114,5 +118,13 @@ export class GoogleLoginComponent implements OnInit {
 
   set oteStatus(value: number) {
     this._oteStatus = value;
+  }
+
+  get mail(): string {
+    return this._mail;
+  }
+
+  set mail(value: string) {
+    this._mail = value;
   }
 }
