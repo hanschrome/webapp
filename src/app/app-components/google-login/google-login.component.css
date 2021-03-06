@@ -21,6 +21,7 @@ header img {
   margin: 15px;
   min-width: 250px;
   transition: 2s all;
+  padding: 5px;
 }
 
 .ote-box button {
@@ -45,4 +46,13 @@ header img {
 
 .ote-box-fullwidth button {
   width: 100px !important;
+}
+
+.divider {
+  margin: 20px;
+}
+
+.ote-talking {
+  color: darkorange;
+  font-weight: bold;
 }

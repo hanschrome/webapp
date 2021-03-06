@@ -32,12 +32,17 @@
 
       </div>
       <div class="card-content">
-          <form>
+          <form style="text-align: center">
             <div>
+              <div>
+                <span>¿Has leído y aceptas la Política de Privacidad y la Política de Cookies?</span>
+              </div>
               <button class="btn" (click)="privacyAccepted = true">
-                He leído y acepto la Política de privacidad y la Política de Cookies
+                Sí, acepto.
               </button>
             </div>
+
+            <div class="divider"></div>
 
             <div style="font-size: 12px;">
               <p style="margin: 10px;">
@@ -75,8 +80,8 @@
           }">
             <div>
               <img class="ote-icon" src="/assets/img/cv-app/transparent-icon.png" alt="Ote" />
-              <span *ngIf="oteStatus === 1">Puedo darte acceso con tu correo electrónico...</span>
-              <span *ngIf="oteStatus === 2">Te he enviado un email, ¿Qué código de 6 dígitos te he enviado?</span>
+              <span *ngIf="oteStatus === 1"><span class="ote-talking">Ote: </span>Puedo darte acceso con tu correo electrónico...</span>
+              <span *ngIf="oteStatus === 2"><span class="ote-talking">Ote: </span>Te he enviado un mensaje a <strong>{{ this.mail }}</strong>, ¿Qué código de 6 dígitos te he enviado?</span>
             </div>
             <div style="padding: 10px;text-align: center;">
               <div class="input-field">
@@ -103,6 +108,8 @@
           </div>
 
           <div style="clear: both;"></div>
+
+          <div class="divider"></div>
         </div>
 
             <div style="font-size: 12px;">
