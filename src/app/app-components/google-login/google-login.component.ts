@@ -15,6 +15,7 @@ export class GoogleLoginComponent implements OnInit {
   private _oteInputModel = null;
   private _oteInputPlaceholder = 'tu@correo.com';
   private _oteStatus = 1;
+  private _oteInputType = 'text';
 
   private _mail: string;
 
@@ -51,11 +52,13 @@ export class GoogleLoginComponent implements OnInit {
         this.mail = this.oteInputModel;
         this.oteInputModel = '';
         this.oteInputPlaceholder = '000000';
+        this.oteInputType = 'number';
         this.oteStatus = 2;
         this.loading = false;
       },
       (ko) => {
         console.log(ko);
+        this.oteInputType = 'text';
         this.oteStatus = 1;
         this.loading = false;
         alert('Ha ocurrido un error enviándole el email de Ote.');
@@ -70,10 +73,13 @@ export class GoogleLoginComponent implements OnInit {
       (ok) => {
         // @todo load token
         console.log(ok);
+        localStorage.setItem('session', ok.token);
+        document.location.href = '/cv';
       },
       (ko) => {
         console.log(ko);
-        this.oteStatus = 2;
+        this.oteInputType = 'text';
+        this.oteStatus = 1;
         this.loading = false;
         alert('¡Ops! Ote ha sufrido un cortocircuito. Inténtalo de nuevo.');
       }
@@ -126,5 +132,13 @@ export class GoogleLoginComponent implements OnInit {
 
   set mail(value: string) {
     this._mail = value;
+  }
+
+  get oteInputType(): string {
+    return this._oteInputType;
+  }
+
+  set oteInputType(value: string) {
+    this._oteInputType = value;
   }
 }

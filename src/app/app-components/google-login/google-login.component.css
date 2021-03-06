@@ -17,9 +17,14 @@ header img {
   border: 1px solid #3d3d3d;
   border-radius: 5px;
   float: left;
-  width: CALC( 50% - 50px);
+  width: CALC( 50% - 50px );
   margin: 15px;
   min-width: 250px;
+  transition: 2s all;
+}
+
+.ote-box button {
+  width: 100%;
 }
 
 .ote-box .ote-icon {
@@ -28,4 +33,16 @@ header img {
   top: -20px;
   left: -20px;
   background-color: white;
+}
+
+.ote-box-fullwidth {
+  width: CALC( 100% - 50px ) !important;
+}
+
+.ote-box-fullwidth input {
+  width: 100px;
+}
+
+.ote-box-fullwidth button {
+  width: 100px !important;
 }
