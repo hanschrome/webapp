@@ -88,7 +88,9 @@
                 <input [type]="oteInputType" [(ngModel)]="oteInputModel" [placeholder]="oteInputPlaceholder" />
               </div>
               <app-loading *ngIf="loading"></app-loading>
-              <button *ngIf="!loading" (click)="onSendOteFormClick()" class="btn">Enviar a Ote</button>
+              <button *ngIf="!loading" (click)="onSendOteFormClick()" class="btn">
+                Enviar
+              </button>
             </div>
           </div>
 
